@@ -203,22 +203,22 @@
   <meta property="og:type" content="video.other" />
   <meta property="og:title" content="Demonstration-Guided Reinforcement Learning with Learned Skills" />
   <meta property="og:description" content="Karl Pertsch, Youngwoon Lee, Yue Wu, Joseph Lim. Demonstration-Guided Reinforcement Learning with Learned Skills. 2021." />
-  <meta property="og:url" content="https://kpertsch.github.io/" />
-  <meta property="og:image" content="https://kpertsch.github.io/skild/resources/teaser.jpg" />  <!-- UPDATE -->
+  <meta property="og:url" content="https://clvrai.github.io/skild" />
+  <meta property="og:image" content="https://clvrai.github.io/skild/resources/skild_teaser.png" />  <!-- UPDATE -->
   <meta property="og:video" content="https://www.youtube.com/v/XXX" />   <!-- UPDATE -->
 
   <meta property="article:publisher" content="https://kpertsch.github.io/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Demonstration-Guided Reinforcement Learning with Learned Skills" />
   <meta name="twitter:description" content="Karl Pertsch, Youngwoon Lee, Yue Wu, Joseph Lim. Demonstration-Guided Reinforcement Learning with Learned Skills. 2021." />
-  <meta name="twitter:url" content="https://kpertsch.github.io/" />
-  <meta name="twitter:image" content="https://kpertsch.github.io/skild/resources/teaser.jpg" />   <!-- UPDATE -->
+  <meta name="twitter:url" content="https://clvrai.github.io/skild" />
+  <meta name="twitter:image" content="https://clvrai.github.io/skild/resources/skild_teaser.png" />   <!-- UPDATE -->
   <meta property="og:image:width" content="1600" />
   <meta property="og:image:height" content="900" />
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <meta name="twitter:card" content="player" />
-  <meta name="twitter:image" content="https://kpertsch.github.io/skild/resources/teaser.jpg" />   <!-- UPDATE -->
+  <meta name="twitter:image" content="https://clvrai.github.io/skild/resources/skild_teaser.png" />   <!-- UPDATE -->
   <meta name="twitter:player" content="https://www.youtube.com/embed/XXX?rel=0&showinfo=0" />   <!-- UPDATE -->
   <meta name="twitter:player:width" content="640" />
   <meta name="twitter:player:height" content="360" />
@@ -253,7 +253,7 @@
       <!-- <center><span style="font-size:20px;">Conference on Robot Learning (CoRL), 2020</span></center> -->
 
       <div class="table-like" style="justify-content:space-evenly;max-width:500px;margin:auto;padding:5px">
-        <div><center><span style="font-size:28px"><a href="https://arxiv.org/pdf/2006.13205.pdf">[Paper]</a></span></center></div>  <!-- UPDATE -->
+        <div><center><span style="font-size:28px"><a href="https://arxiv.org/abs/2107.10253">[Paper]</a></span></center></div>  <!-- UPDATE -->
         <div><center><span style="font-size:28px"><a>[Code Coming Soon]</a></span></center> </div>   <!-- UPDATE -->
         <!-- <div><center><span style="font-size:28px"><a href='https://youtu.be/w32twGTWvDU'>[Talk (5 min)]</a></span></center> </div> -->
       </div>
@@ -265,7 +265,7 @@
       <!-- <br> -->
 
       <br/>
-          <center><a href="resources/skild_teaser.png"><img src = "resources/skild_teaser.png" width="600px"></img></a><br></center>
+          <center><img src = "resources/skild_teaser.png" width="600px"></img><br></center>
       <br/>
 
       <div style="width:800px; margin:0 auto;padding:5px" align="justify">
@@ -279,7 +279,7 @@
         <div style="width:800px; margin:0 auto;padding:5px" align="justify">
         Our goal is to use skills extracted from prior experience to improve the efficiency of demonstration-guided RL on a new task. We aim to leverage a set of provided demonstrations by following the performed skills as opposed to the primitive actions. 
         </div><br>
-        <center><a href="resources/skild_model.png"><img src = "resources/skild_model.png" width="1000px"></img></a><br></center>
+        <center><img src = "resources/skild_model.png" width="1000px"></img><br></center>
         <br/>
         <div style="width:800px; margin:0 auto;padding:5px" align="justify">
         Learing in our approach, SkiLD, is performed in three stages. <b>(1)</b>: First, we extract a set of reusable skills from prior, task-agnostic experience. We build on prior work in skill-based RL for learning the skill extraction module (<a href="https://www.clvrai.com/spirl" target="_blank">SPiRL, Pertsch et al. 2020</a>). <b>(2)</b>: We then use the pre-trained skill encoder to infer the skills performed in task-agnostic and demonstration sequences and learn state-conditioned skill distributions, which we call <i>skill prior</i> and <i>skill posterior</i> respectively. <b>(3)</b>: Finally, we use both distributions to guide a hierarchical skill policy during learning of the downstream task.
@@ -290,7 +290,7 @@
         <tr>
         <td style="width:30%">
           <!-- <p style="margin-top:4px;"></p> -->
-          <a href="resources/skild_downstream_sketch.png"><img style="width:600px; float:left" src="resources/skild_downstream_sketch.png"/></a>
+          <img style="width:600px; float:left" src="resources/skild_downstream_sketch.png"/>
         </td>
         <td style="width:3%"></td>
         <td style="width:57%">
@@ -339,7 +339,7 @@
         <center><h1>How does SkiLD Follow the Demonstrations?</h1></center>
       </div>
       <!-- <br/> -->
-          <center><a href="resources/skild_quali_results.png"><img src = "resources/skild_quali_results.png" width="1000px"></img></a><br></center>
+          <center><img src = "resources/skild_quali_results.png" width="1000px"></img><br></center>
           <div style="width:800px; margin:0 auto;" align="justify">
         We analyze the qualitative behavior of our approach in the maze environment: the discriminator D(s) can accurately estimate the support of the demonstrations (green). Thus, the SkiLD policy minimizes divergence to the demonstration-based skill posterior <i>within</i> the demonstration support (third panel, blue) and follows the task-agnostic skill prior otherwise (fourth panel). In summary, the agent learns to follow the demonstrations whenever it's within their support and falls back to prior-based exploration outside the support.
       </div>
