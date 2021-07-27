@@ -1,0 +1,3 @@
+[submodule "spirl"]
+	path = spirl
+	url = git@github.com:clvrai/spirl.git
