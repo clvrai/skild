@@ -181,5 +181,6 @@ sampler_config = AttrDict(
 # Environment
 env_config = AttrDict(
     reward_norm=1,
+    name='kitchen-kbts-v0',
 )
 

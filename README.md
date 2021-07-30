@@ -8,7 +8,7 @@
 
 <a href="https://clvrai.github.io/skild/">
 <p align="center">
-<img src="docs/resources/skild_teaser.png" width="800">
+<img src="docs/resources/skild_teaser.png" width="600">
 </p>
 </img></a>
 
