@@ -51,6 +51,8 @@ export EXP_DIR=./experiments
 export DATA_DIR=./data
 ```
 
+If you are planning to use GPUs, set the target GPU via `export CUDA_VISIBLE_DEVICES=XXX`.
+
 Finally, for running RL experiments on maze or kitchen environments, install our fork of the
 [D4RL benchmark](https://github.com/kpertsch/d4rl) repository by following its installation instructions. Also make sure
 to place your Mujoco license file `mj_key.txt` in `~/.mujoco`.
@@ -69,13 +71,13 @@ create an account and then change the WandB entity and project name at the top o
 #### Skill Embedding & Prior
 To train a skill prior model for the kitchen environment we'll use SPiRL -- run:
 ```
-python3 spirl/spirl/train.py --path=spirl/spirl/configs/skill_prior_learning/kitchen/hierarchical_cl --val_data_size=160
+python3 spirl/spirl/train.py --path=spirl/spirl/configs/skill_prior_learning/kitchen/hierarchical_cl --val_data_size=160 --prefix=kitchen_prior
 ```
 
 #### Skill Posterior
 For training the skill posterior on the demonstration data, run:
 ```
-python3 spirl/spirl/train.py --path=skild/configs/skill_posterior/kitchen --val_data_size=160
+python3 spirl/spirl/train.py --path=skild/configs/skill_posterior/kitchen --val_data_size=160 --prefix=kitchen_post
 ```
 Note that the skill posterior can only be trained once skill embedding and prior training is completed 
 since it leverages the pre-trained skill embedding.
@@ -83,7 +85,7 @@ since it leverages the pre-trained skill embedding.
 #### Demo Discriminator
 For training the demonstration discriminator, run:
 ```
-python3 spirl/spirl/train.py --path=skild/configs/demo_discriminator/kitchen --val_data_size=160
+python3 spirl/spirl/train.py --path=skild/configs/demo_discriminator/kitchen --val_data_size=160 --prefix=kitchen_discr
 ```
 
 #### Demonstration-Guided RL

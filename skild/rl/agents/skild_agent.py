@@ -44,8 +44,11 @@ class SkiLDAgent(GAILActionPriorSACAgent):
             self.alpha_q_loss = 0.
 
         # update alpha
-        alpha_loss = (self._compute_alpha_loss(policy_output) * (1-experience_batch.p_demo).detach()).mean()
-        self._perform_update(alpha_loss, self.alpha_opt, self._log_alpha)
+        if self._hp.fixed_alpha is None:
+            alpha_loss = (self._compute_alpha_loss(policy_output) * (1-experience_batch.p_demo).detach()).mean()
+            self._perform_update(alpha_loss, self.alpha_opt, self._log_alpha)
+        else:
+            alpha_loss = 0.
         return alpha_loss
 
     def _compute_alpha_q_loss(self, policy_output):
@@ -53,7 +56,6 @@ class SkiLDAgent(GAILActionPriorSACAgent):
                                - policy_output.posterior_divergence).detach()
 
     def _compute_alpha_loss(self, policy_output):
-        self._update_steps += 1
         return self.alpha * (self._target_divergence(self.schedule_steps) - policy_output.prior_divergence).detach()
 
     def _compute_policy_loss(self, experience_batch, policy_output):
