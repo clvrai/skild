@@ -51,6 +51,7 @@ ll_model_params = AttrDict(
     action_dim=data_spec.n_actions,
     n_rollout_steps=10,
     kl_div_weight=5e-4,
+    nz_vae=10,
     nz_enc=128,
     nz_mid=128,
     n_processing_layers=5,
@@ -61,7 +62,7 @@ ll_model_params = AttrDict(
 ll_policy_params = AttrDict(
     policy_model=ClSPiRLMdl,
     policy_model_params=ll_model_params,
-    policy_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_prior_learning/kitchen/hierarchical_cl"),
+    policy_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_prior_learning/kitchen/hierarchical_cl/kitche_prior"),
 )
 ll_policy_params.update(ll_model_params)
 
@@ -82,7 +83,6 @@ ll_agent_config.update(AttrDict(
     critic=SplitObsMLPCritic,
     critic_params=ll_critic_params,
 ))
-ll_agent_config.critic_lr = ll_agent_config.policy_lr
 
 ###### High-Level ########
 # HL Policy
@@ -96,7 +96,7 @@ hl_policy_params = AttrDict(
     prior_model_checkpoint=ll_policy_params.policy_model_checkpoint,
     posterior_model=ll_policy_params.policy_model,
     posterior_model_params=copy.deepcopy(ll_policy_params.policy_model_params),
-    posterior_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_posterior/kitchen/"),
+    posterior_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_posterior/kitchen/kitchen_post"),
 )
 hl_policy_params.posterior_model_params.batch_size = base_agent_params.batch_size
 
@@ -143,7 +143,7 @@ hl_agent_config.update(AttrDict(
     critic_params=hl_critic_params,
     discriminator=DemoDiscriminator,
     discriminator_params=demo_discriminator_config,
-    discriminator_checkpoint=os.path.join(os.environ["EXP_DIR"], "demo_discriminator/kitchen"),
+    discriminator_checkpoint=os.path.join(os.environ["EXP_DIR"], "demo_discriminator/kitchen/kitchen_discr"),
     freeze_discriminator=True,      # don't update pretrained discriminator
     buffer=UniformReplayBuffer,
     buffer_params={'capacity': 1e6,},

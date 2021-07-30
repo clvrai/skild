@@ -16,8 +16,8 @@ configuration = {
     'logger': DemoDiscriminatorLogger,
     'logger_test': DemoDiscriminatorLogger,
     'data_dir': ".",
-    'num_epochs': 200,
-    'epoch_cycles_train': 100,
+    'num_epochs': 100,
+    'epoch_cycles_train': 10,
     'evaluator': DummyEvaluator,
 }
 configuration = AttrDict(configuration)
@@ -35,6 +35,7 @@ demo_data_config.dataset_spec.subseq_len = 1+1
 demo_data_config.dataset_spec.filter_indices = [[320, 337], [339, 344]]  # use only demos for one task (here: KBTS)
 demo_data_config.dataset_spec.demo_repeats = 10                          # repeat those demos N times
 model_config.demo_data_conf = demo_data_config
+model_config.demo_data_path = '.'
 
 # Non-demo Dataset
 data_config = AttrDict()
