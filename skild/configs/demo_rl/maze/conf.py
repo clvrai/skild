@@ -9,13 +9,14 @@ from spirl.rl.components.sampler import HierarchicalSampler
 from spirl.rl.components.critic import MLPCritic, SplitObsMLPCritic
 from spirl.rl.agents.ac_agent import SACAgent
 from spirl.rl.policies.cl_model_policies import ClModelPolicy
-from spirl.rl.envs.kitchen import KitchenEnv
+from spirl.rl.envs.maze import ACRandMaze0S40Env
 from spirl.models.closed_loop_spirl_mdl import ClSPiRLMdl
-from spirl.configs.default_data_configs.kitchen import data_spec
+from spirl.configs.default_data_configs.maze import data_spec
 
 from skild.rl.policies.posterior_policies import LearnedPPPolicy
 from skild.models.demo_discriminator import DemoDiscriminator
 from skild.rl.agents.skild_agent import SkiLDAgent
+from skild.data.maze.src.maze_agents import MazeSkiLDAgent
 
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -25,12 +26,12 @@ notes = 'used to test the RL implementation'
 configuration = {
     'seed': 42,
     'agent': FixedIntervalHierarchicalAgent,
-    'environment': KitchenEnv,
+    'environment': ACRandMaze0S40Env,
     'sampler': HierarchicalSampler,
     'data_dir': '.',
     'num_epochs': 200,
-    'max_rollout_len': 280,
-    'n_steps_per_epoch': 1e6,
+    'max_rollout_len': 2000,
+    'n_steps_per_epoch': 1e5,
     'log_output_per_epoch': 1000,
     'n_warmup_steps': 2e3,
 }
@@ -50,7 +51,7 @@ ll_model_params = AttrDict(
     state_dim=data_spec.state_dim,
     action_dim=data_spec.n_actions,
     n_rollout_steps=10,
-    kl_div_weight=5e-4,
+    kl_div_weight=1e-2,
     nz_vae=10,
     nz_enc=128,
     nz_mid=128,
@@ -62,7 +63,7 @@ ll_model_params = AttrDict(
 ll_policy_params = AttrDict(
     policy_model=ClSPiRLMdl,
     policy_model_params=ll_model_params,
-    policy_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_prior/kitchen/kitchen_prior"),
+    policy_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_prior/maze/maze_prior"),
 )
 ll_policy_params.update(ll_model_params)
 
@@ -96,13 +97,13 @@ hl_policy_params = AttrDict(
     prior_model_checkpoint=ll_policy_params.policy_model_checkpoint,
     posterior_model=ll_policy_params.policy_model,
     posterior_model_params=copy.deepcopy(ll_policy_params.policy_model_params),
-    posterior_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_posterior/kitchen/kitchen_post"),
+    posterior_model_checkpoint=os.path.join(os.environ["EXP_DIR"], "skill_posterior/maze/maze_post"),
 )
 hl_policy_params.posterior_model_params.batch_size = base_agent_params.batch_size
 
 hl_policy_params.policy_model = ll_policy_params.policy_model
 hl_policy_params.policy_model_params = copy.deepcopy(ll_policy_params.policy_model_params)
-hl_policy_params.policy_model_checkpoint = hl_policy_params.posterior_model_checkpoint
+hl_policy_params.policy_model_checkpoint = hl_policy_params.prior_model_checkpoint
 hl_policy_params.policy_model_params.batch_size = base_agent_params.batch_size
 
 
@@ -123,8 +124,8 @@ data_config.dataset_spec = data_spec
 data_config.dataset_spec.update(AttrDict(
     crop_rand_subseq=True,
     subseq_len=2,
-    filter_indices=[[320, 337], [339, 344]],
-    demo_repeats=10,
+    n_seqs=5,
+    seq_repeat=100,
 ))
 
 # HL Pre-Trained Demo Discriminator
@@ -143,7 +144,7 @@ hl_agent_config.update(AttrDict(
     critic_params=hl_critic_params,
     discriminator=DemoDiscriminator,
     discriminator_params=demo_discriminator_config,
-    discriminator_checkpoint=os.path.join(os.environ["EXP_DIR"], "demo_discriminator/kitchen/kitchen_discr"),
+    discriminator_checkpoint=os.path.join(os.environ["EXP_DIR"], "demo_discriminator/maze/maze_discr"),
     freeze_discriminator=True,      # don't update pretrained discriminator
     buffer=UniformReplayBuffer,
     buffer_params={'capacity': 1e6,},
@@ -151,20 +152,20 @@ hl_agent_config.update(AttrDict(
     replay=UniformReplayBuffer,
     replay_params={'dump_replay': False, 'capacity': 2e6},
     expert_data_conf=data_config,
-    expert_data_path=".",
+    expert_data_path=os.path.join(os.environ['DATA_DIR'], 'maze_demos'),
 ))
 
 # SkiLD Parameters
 hl_agent_config.update(AttrDict(
     lambda_gail_schedule_params=AttrDict(p=0.9),
-    fixed_alpha=1e-1,
-    fixed_alpha_q=1e-1,
+    td_schedule_params=AttrDict(p=10.0),
+    tdq_schedule_params=AttrDict(p=1.0),
 ))
 
 
 ##### Joint Agent #######
 agent_config = AttrDict(
-    hl_agent=SkiLDAgent,
+    hl_agent=MazeSkiLDAgent,
     hl_agent_params=hl_agent_config,
     ll_agent=SACAgent,
     ll_agent_params=ll_agent_config,
@@ -181,6 +182,5 @@ sampler_config = AttrDict(
 # Environment
 env_config = AttrDict(
     reward_norm=1,
-    name='kitchen-kbts-v0',
 )
 

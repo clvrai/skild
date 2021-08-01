@@ -69,9 +69,9 @@ create an account and then change the WandB entity and project name at the top o
 [rl/train.py](https://github.com/clvrai/spirl/spirl/rl/train.py) to match your account.
 
 #### Skill Embedding & Prior
-To train a skill prior model for the kitchen environment we'll use SPiRL -- run:
+To train skill embedding and skill prior model for the kitchen environment, run:
 ```
-python3 spirl/spirl/train.py --path=spirl/spirl/configs/skill_prior_learning/kitchen/hierarchical_cl --val_data_size=160 --prefix=kitchen_prior
+python3 spirl/spirl/train.py --path=skild/configs/skill_prior/kitchen --val_data_size=160 --prefix=kitchen_prior
 ```
 
 #### Skill Posterior
