@@ -17,7 +17,7 @@ configuration = {
     'logger_test': DemoDiscriminatorLogger,
     'data_dir': os.path.join(os.environ['DATA_DIR'], 'office_TA'),
     'num_epochs': 100,
-    'epoch_cycles_train': 200,
+    'epoch_cycles_train': 300,
     'evaluator': DummyEvaluator,
 }
 configuration = AttrDict(configuration)
