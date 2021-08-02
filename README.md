@@ -135,6 +135,8 @@ gdown https://drive.google.com/uc?id=1FOE1kiU71nB-3KCDuxGqlAqRQbKmSk80
 gdown https://drive.google.com/uc?id=149trMTyh3A2KnbUOXwt6Lc3ba-1T9SXj
 ``` 
 
+Finally, unzip the downloaded files with `unzip <path_to_file>`.
+
 ## Code Structure & Modifying the Code
 For a more detailed documentation of the code structure and how to extend the code (adding new enviroments, models, RL algos)
 please check the [documentation in the SPiRL repo](https://github.com/clvrai/spirl#starting-to-modify-the-code).
