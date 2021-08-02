@@ -124,8 +124,9 @@ data_config.dataset_spec = data_spec
 data_config.dataset_spec.update(AttrDict(
     crop_rand_subseq=True,
     subseq_len=2,
-    n_seqs=5,
+    n_seqs=10,
     seq_repeat=100,
+    split=AttrDict(train=0.5, val=0.5, test=0.0),
 ))
 
 # HL Pre-Trained Demo Discriminator

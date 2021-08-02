@@ -13,7 +13,7 @@ configuration = {
     'model': ClSPiRLMdl,
     'logger': Logger,
     'data_dir': os.path.join(os.environ['DATA_DIR'], 'maze_TA'),
-    'epoch_cycles_train': 50,
+    'epoch_cycles_train': 250,
     'num_epochs': 100,
     'evaluator': TopOfNSequenceEvaluator,
     'top_of_n_eval': 100,
