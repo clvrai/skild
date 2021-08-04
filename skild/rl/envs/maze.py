@@ -1,7 +1,7 @@
 import numpy as np
 
-from core.rl.components.environment import GymEnv
-from core.utils.general_utils import ParamDict, AttrDict
+from spirl.rl.components.environment import GymEnv
+from spirl.utils.general_utils import ParamDict, AttrDict
 
 
 class MazeEnv(GymEnv):
