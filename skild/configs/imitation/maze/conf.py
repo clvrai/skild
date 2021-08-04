@@ -9,12 +9,12 @@ from spirl.rl.components.sampler import HierarchicalSampler
 from spirl.rl.components.critic import MLPCritic, SplitObsMLPCritic
 from spirl.rl.agents.ac_agent import SACAgent
 from spirl.rl.policies.cl_model_policies import ClModelPolicy
-from spirl.rl.envs.maze import ACRandMaze0S40Env
 from spirl.models.closed_loop_spirl_mdl import ClSPiRLMdl
 from spirl.configs.default_data_configs.maze import data_spec
 
 from skild.rl.policies.posterior_policies import LearnedPPPolicy
 from skild.models.demo_discriminator import DemoDiscriminator
+from skild.rl.envs.maze import ACRandMaze0S40Env
 from skild.rl.agents.skild_agent import SkiLDAgent
 from skild.data.maze.src.maze_agents import MazeSkiLDAgent
 
@@ -172,7 +172,7 @@ agent_config = AttrDict(
     ll_agent=SACAgent,
     ll_agent_params=ll_agent_config,
     hl_interval=ll_model_params.n_rollout_steps,
-    log_videos=True,
+    log_videos=False,
     update_hl=True,
     update_ll=False,
 )
