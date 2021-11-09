@@ -42,6 +42,7 @@ obs_norm_params = AttrDict(
 
 base_agent_params = AttrDict(
     batch_size=128,
+    # update_iterations=XXX,
 )
 
 ###### Low-Level ######
