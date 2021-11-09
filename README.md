@@ -104,6 +104,8 @@ In all commands above, `kitchen` can be replaced with `maze / office` to run on 
 on these environments, the corresponding datasets need to be downloaded (the kitchen dataset gets downloaded automatically) 
 -- download links are provided below.
 
+To accelerate RL / IL training, you can use MPI for multi-processing by pre-pending `mpirun -np XXX` to the above RL / IL commands, where `XXX` corresponds to the number of parallel workers you want to spawn. Also update the corresponding [config file](skild/configs/demo_rl/kitchen/conf.py) by uncommenting the `update_iterations = XXX` line and again replacing `XXX` with the desired number of workers.
+
 
 ## Datasets
 
