@@ -65,8 +65,8 @@ Our skill-based imitation / demo-guided RL pipeline is run in four steps: (1) tr
 on the downstream task.
 
 All results will be written to [WandB](https://www.wandb.com/). Before running any of the commands below, 
-create an account and then change the WandB entity and project name at the top of [train.py](https://github.com/clvrai/spirl/spirl/train.py) and
-[rl/train.py](https://github.com/clvrai/spirl/spirl/rl/train.py) to match your account.
+create an account and then change the WandB entity and project name at the top of [train.py](https://github.com/clvrai/spirl/blob/master/spirl/train.py) and
+[rl/train.py](https://github.com/clvrai/spirl/blob/master/spirl/rl/train.py) to match your account.
 
 #### Skill Embedding & Prior
 To train skill embedding and skill prior model for the kitchen environment, run:
