@@ -17,7 +17,7 @@ This is the official PyTorch implementation of the paper "**Demonstration-Guided
 ## Requirements
 
 - python 3.7+
-- mujoco 2.0 (for RL experiments)
+- mujoco 2.1 (for RL experiments)
 - Ubuntu 18.04
 
 ## Installation Instructions
@@ -111,8 +111,8 @@ on these environments, the corresponding datasets need to be downloaded (the kit
 |:------------- |:-------------|:-----|
 | Maze Task-Agnostic | [https://drive.google.com/file/d/103RFpEg4ATnH06fd1ps8ZQL4sTtifrvX/view?usp=sharing](https://drive.google.com/file/d/103RFpEg4ATnH06fd1ps8ZQL4sTtifrvX/view?usp=sharing)| 470MB |
 | Maze Demos | [https://drive.google.com/file/d/1wTR9ns5QsEJnrMJRXFEJWCMk-d1s4S9t/view?usp=sharing](https://drive.google.com/file/d/1wTR9ns5QsEJnrMJRXFEJWCMk-d1s4S9t/view?usp=sharing)| 100MB |
-| Office Cleanup Task-Agnostic | [https://drive.google.com/file/d/1FOE1kiU71nB-3KCDuxGqlAqRQbKmSk80/view?usp=sharing](https://drive.google.com/file/d/1FOE1kiU71nB-3KCDuxGqlAqRQbKmSk80/view?usp=sharing)| 170MB |
-| Office Cleanup Demos | [https://drive.google.com/file/d/149trMTyh3A2KnbUOXwt6Lc3ba-1T9SXj/view?usp=sharing](https://drive.google.com/file/d/149trMTyh3A2KnbUOXwt6Lc3ba-1T9SXj/view?usp=sharing)| 6MB |
+| Office Cleanup Task-Agnostic | Coming soon!| -- |
+| Office Cleanup Demos | Coming soon!| -- |
 
 To download the dataset files from Google Drive via the command line, you can use the 
 [gdown](https://github.com/wkentaro/gdown) package. Install it with:
@@ -127,12 +127,6 @@ gdown https://drive.google.com/uc?id=103RFpEg4ATnH06fd1ps8ZQL4sTtifrvX
 
 # Download Maze Demonstration Dataset
 gdown https://drive.google.com/uc?id=1wTR9ns5QsEJnrMJRXFEJWCMk-d1s4S9t
-
-# Download Office Task-Agnostic Dataset
-gdown https://drive.google.com/uc?id=1FOE1kiU71nB-3KCDuxGqlAqRQbKmSk80
-
-# Download Office Demonstration Dataset
-gdown https://drive.google.com/uc?id=149trMTyh3A2KnbUOXwt6Lc3ba-1T9SXj
 ``` 
 
 Finally, unzip the downloaded files with `unzip <path_to_file>`.
@@ -147,7 +141,7 @@ If you find this work useful in your research, please consider citing:
 @article{pertsch2021skild,
          title={Demonstration-Guided Reinforcement Learning with Learned Skills},
          author={Karl Pertsch and Youngwoon Lee and Yue Wu and Joseph J. Lim},
-         journal={arxiv:210712345},
+         journal={5th Conference on Robot Learning},
          year={2021},
 }
 ```
