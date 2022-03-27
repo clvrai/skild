@@ -14,7 +14,7 @@ In the SkiLD paper, we analyze the effect of target tasks of differing alignment
 in the kitchen environment (Section 4.4). We also provide an analysis of the subtask transition probabilities in the
 dataset of Gupta et al. (Figure 14, see below), which we can use to determine tasks of varying complexity.
 
-<p align="center"><img src="../../../docs/resources/kitchen_subtask_distribution.png" width="600"></img></p>
+<p align="center"><img src="../../../docs/resources/kitchen_subtask_distribution.png" width="1000"></img></p>
 
 
 ### Changing the Kitchen Target Task
