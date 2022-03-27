@@ -1,4 +1,4 @@
-## Choosing Kitchen Target Tasks
+# Choosing Kitchen Target Tasks
 
 In the kitchen environment a task defines the consecutive execution of four subtasks. 
 Some subtask sequences can be more challenging for agents to learn than others. For SkiLD, as well as for SPiRL and any
@@ -17,7 +17,7 @@ dataset of Gupta et al. (Figure 14, see below), which we can use to determine ta
 <p align="center"><img src="../../../docs/resources/kitchen_subtask_distribution.png" width="1000"></img></p>
 
 
-### Changing the Kitchen Target Task
+## Changing the Kitchen Target Task
 
 By default, the configs provided in this repository can be used to train a SkiLD agent on the 
 `Kettle --> Bottom Burner --> Top Burner --> Slide Cabinet` task, whose transitions relatively well-represented in the
